@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.8.21'
+    id 'org.jetbrains.intellij' version '1.13.3'
+}
+
+group = 'com.zendril.jetbrains.jai.lsp'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+// Configure Gradle IntelliJ Plugin
+intellij {
+    version = '2023.1.4'
+    type = 'CL' // Target CLion specifically
+    plugins = ['com.intellij.clion']
+    updateSinceUntilBuild = false
+}
+
+dependencies {
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+}
+
+// Set the JVM compatibility versions
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+tasks {
+    compileKotlin {
+        kotlinOptions.jvmTarget = '17'
+    }
+    compileTestKotlin {
+        kotlinOptions.jvmTarget = '17'
+    }
+
+    runIde {
+        // Configure the run IDE task
+        ideDir = file('C:/Program Files/JetBrains/CLion 2023.1.4') // Adjust this path to your CLion installation
+    }
+
+    buildSearchableOptions {
+        enabled = false
+    }
+}

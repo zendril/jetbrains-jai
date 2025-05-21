@@ -1,4 +1,4 @@
-package com.zendril.jetbrains.jai.lsp.file
+package com.zendril.jetbrains.jai.file
 
 import com.intellij.openapi.fileTypes.FileTypeConsumer
 import com.intellij.openapi.fileTypes.FileTypeFactory

@@ -23,20 +23,6 @@ repositories {
     }
 }
 
-// Configure the IntelliJ Platform plugin
-//intellijPlatform {
-//    // Configuration for the new plugin will go here.
-//    // The way you set the target IDE version, type, sinceBuild, untilBuild, etc.,
-//    // will be different with this new plugin.
-//    // For example, to set the target IDE version you might use something like:
-//    // targetIde("CL", "2025.1.1") // This is an illustrative example, check docs for exact syntax
-//
-//    // Your old settings:
-//    // version.set("2025.1.1") // This will change
-//    // type.set("CL") // This will change
-//    // updateSinceUntilBuild.set(false) // This concept is handled differently
-//}
-
 // Configure Java compatibility
 java {
     sourceCompatibility = JavaVersion.VERSION_17

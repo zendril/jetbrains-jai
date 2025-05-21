@@ -1,4 +1,4 @@
-package com.zendril.jetbrains.jai.lsp.actions
+package com.zendril.jetbrains.jai.actions
 
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent

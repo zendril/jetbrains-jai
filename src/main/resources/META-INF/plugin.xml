@@ -1,16 +1,53 @@
 <idea-plugin>
-    <id>com.zendril.jetbrains.jai.lsp</id>
-    <name>Jai Language Support</name>
-    <vendor email="your.email@example.com" url="https://github.com/zendril/jai-lsp">Zendril</vendor>
+  <id>com.zendril.jetbrains.jai</id> <!-- Unique ID for your plugin -->
+  <name>Jai Language Support</name>   <!-- Name displayed in the plugin manager -->
+  <version>0.0.1</version>          <!-- Your plugin's version -->
+  <vendor email="your.email@example.com" url="https://your.website.com">Your Name or Company</vendor>
 
-    <description><![CDATA[
-    Provides support for the Jai programming language.
-    This plugin is compatible with CLion.
-    ]]></description>
+  <description><![CDATA[
+    Provides language support for Jai.<br>
+    <em>Features syntax highlighting, navigation (via Jails LSP), etc.</em>
+  ]]></description>
 
-    <!-- Product and plugin compatibility requirements -->
-    <depends>com.intellij.modules.platform</depends>
-    <depends>com.intellij.modules.clion</depends>
+  <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
+       on how to target different products -->
+  <depends>com.intellij.modules.platform</depends>
 
-    <!-- No extensions or actions for now, just a minimal plugin -->
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Register the project service for managing the Jails LSP server -->
+    <projectService serviceImplementation="com.zendril.jetbrains.jai.JailsLspService"/>
+
+    <!-- Register the activity to start the Jails LSP server when a project opens -->
+    <!-- Try both approaches -->
+    <projectActivity implementation="com.zendril.jetbrains.jai.JaiProjectOpenActivity"/>
+    <postStartupActivity implementation="com.zendril.jetbrains.jai.JaiProjectOpenActivity"/>
+    
+    <!-- Add application startup activity for debugging -->
+    <postStartupActivity implementation="com.zendril.jetbrains.jai.JaiAppStartupActivity"/>
+
+    <!-- Add notification group -->
+    <notificationGroup id="Jai Notifications" 
+                      displayType="BALLOON"/>
+
+    <!-- Add other extensions here as you develop them (FileType, SyntaxHighlighter, Annotator, etc.) -->
+    <!--
+    <fileType name="Jai File" implementationClass="com.zendril.jetbrains.jai.JaiFileType" fieldName="INSTANCE" language="Jai" extensions="jai"/>
+    -->
+  </extensions>
+
+  <actions>
+    <action id="Jai.HelloAction" 
+          class="com.zendril.jetbrains.jai.actions.JaiHelloAction" 
+          text="Jai Hello" 
+          description="Sample hello action from Jai plugin">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+    </action>
+    
+    <action id="Jai.DebugAction" 
+          class="com.zendril.jetbrains.jai.actions.JaiDebugAction" 
+          text="Jai Debug" 
+          description="Action to debug Jai plugin functionality">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+    </action>
+  </actions>
 </idea-plugin>
